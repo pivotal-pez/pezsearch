@@ -19,6 +19,7 @@ var _ = Describe("Routes", func() {
 				InitRoutes(m)
 			})
 
+			//TODO: Implement routing tests with httptest
 			It("Should setup the routes for the service", func() {
 				Ω(true).Should(BeTrue())
 			})
