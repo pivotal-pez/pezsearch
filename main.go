@@ -5,13 +5,9 @@
 // @SubApi Item Search [/items]
 package main
 
-import (
-	"github.com/go-martini/martini"
-	"github.com/pivotalservices/pezinventory"
-)
+import "github.com/pivotalservices/pezinventory/pezinventory"
 
 func main() {
-	m := martini.Classic()
-	pezinventory.InitRoutes(m)
-	m.Run()
+	server := pezinventory.NewServer()
+	server.Run()
 }
