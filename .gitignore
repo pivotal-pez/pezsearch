@@ -25,3 +25,5 @@ _testmain.go
 coverage.out
 /pezinventory.coverprofile
 /web/web
+/server/server.coverprofile
+/pezinventory

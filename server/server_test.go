@@ -32,7 +32,8 @@ var _ = Describe("Server", func() {
 
 			It("returns a list of types", func() {
 				server.ServeHTTP(recorder, request)
-				Ω(recorder.Body).To(ContainSubstring("List of Types"))
+				Ω(recorder.Body).To(ContainSubstring("success"))
+				Ω(recorder.Body).To(ContainSubstring("data"))
 			})
 		})
 	})
@@ -50,7 +51,8 @@ var _ = Describe("Server", func() {
 
 			It("returns Type details", func() {
 				server.ServeHTTP(recorder, request)
-				Ω(recorder.Body).To(ContainSubstring("Details of Type"))
+				Ω(recorder.Body).To(ContainSubstring("success"))
+				Ω(recorder.Body).To(ContainSubstring("data"))
 			})
 		})
 	})
@@ -68,7 +70,8 @@ var _ = Describe("Server", func() {
 
 			It("returns a list of Items for Type", func() {
 				server.ServeHTTP(recorder, request)
-				Ω(recorder.Body).To(ContainSubstring("List of Items for Type"))
+				Ω(recorder.Body).To(ContainSubstring("success"))
+				Ω(recorder.Body).To(ContainSubstring("data"))
 			})
 		})
 	})
@@ -86,7 +89,8 @@ var _ = Describe("Server", func() {
 
 			It("returns a list of Items", func() {
 				server.ServeHTTP(recorder, request)
-				Ω(recorder.Body).To(ContainSubstring("List of Items"))
+				Ω(recorder.Body).To(ContainSubstring("success"))
+				Ω(recorder.Body).To(ContainSubstring("data"))
 			})
 		})
 	})
@@ -104,7 +108,8 @@ var _ = Describe("Server", func() {
 
 			It("returns Item details", func() {
 				server.ServeHTTP(recorder, request)
-				Ω(recorder.Body).To(ContainSubstring("Details of Item"))
+				Ω(recorder.Body).To(ContainSubstring("success"))
+				Ω(recorder.Body).To(ContainSubstring("data"))
 			})
 		})
 	})
@@ -114,15 +119,16 @@ var _ = Describe("Server", func() {
 			request, _ = http.NewRequest("GET", "/v1/items/12345/history", nil)
 		})
 
-		Context("when history exists for Item", func() {
-			It("returns a status code of 200", func() {
+		Context("not implemented", func() {
+			It("returns a status code of 501", func() {
 				server.ServeHTTP(recorder, request)
-				Ω(recorder.Code).To(Equal(200))
+				Ω(recorder.Code).To(Equal(501))
 			})
 
-			It("returns the history for an Item", func() {
+			It("returns error response", func() {
 				server.ServeHTTP(recorder, request)
-				Ω(recorder.Body).To(ContainSubstring("History for Item"))
+				Ω(recorder.Body).To(ContainSubstring("error"))
+				Ω(recorder.Body).To(ContainSubstring("message"))
 			})
 		})
 	})

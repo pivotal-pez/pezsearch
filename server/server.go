@@ -10,6 +10,8 @@ import (
 //Server wraps the Martini server struct
 type Server *martini.ClassicMartini
 
+//NewServer configures and returns a Server.
+//TODO: Parameterize DB
 func NewServer() Server {
 
 	m := Server(martini.Classic())

@@ -5,9 +5,9 @@
 // @SubApi Item Search [/items]
 package main
 
-import "github.com/pivotalservices/pezinventory/pezinventory"
+import "github.com/pivotalservices/pezinventory/server"
 
 func main() {
-	server := pezinventory.NewServer()
-	server.Run()
+	s := server.NewServer()
+	s.Run()
 }
