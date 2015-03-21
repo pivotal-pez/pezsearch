@@ -7,7 +7,7 @@ import (
 	"testing"
 )
 
-func TestInventory(t *testing.T) {
+func TestSearch(t *testing.T) {
 	RegisterFailHandler(Fail)
-	RunSpecs(t, "Pez Inventory Suite")
+	RunSpecs(t, "Pez Search Suite")
 }
