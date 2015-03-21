@@ -1,31 +1,32 @@
 package pezsearch
 
-type item struct {
+//Item - data for the item resource
+type Item struct {
 	ID          string `json:"id"`
 	Name        string `json:"name"`
 	Description string `json:"description"`
 	TypeID      string `json:"type-id"`
 }
 
-func listItems() (i []item) {
-	i1 := &item{
+func listItems() (i []Item) {
+	i1 := &Item{
 		ID:          "1",
 		Name:        "Item 1",
 		Description: "Item 1 Description",
 		TypeID:      "abc",
 	}
-	i2 := &item{
+	i2 := &Item{
 		ID:          "2",
 		Name:        "Item 2",
 		Description: "Item 2 Description",
 		TypeID:      "def",
 	}
-	i = []item{*i1, *i2}
+	i = []Item{*i1, *i2}
 	return
 }
 
-func getItem(id string) (i *item) {
-	i = &item{
+func getItem(id string) (i *Item) {
+	i = &Item{
 		ID:          id,
 		Name:        "Item " + id,
 		Description: "Item " + id + " Description",
@@ -34,19 +35,19 @@ func getItem(id string) (i *item) {
 	return
 }
 
-func listItemsByType(id string) (i []item) {
-	i1 := &item{
+func listItemsByType(id string) (i []Item) {
+	i1 := &Item{
 		ID:          "4",
 		Name:        "Item 1",
 		Description: "Item 1 Description",
 		TypeID:      id,
 	}
-	i2 := &item{
+	i2 := &Item{
 		ID:          "5",
 		Name:        "Item 2",
 		Description: "Item 2 Description",
 		TypeID:      id,
 	}
-	i = []item{*i1, *i2}
+	i = []Item{*i1, *i2}
 	return
 }
