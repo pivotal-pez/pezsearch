@@ -5,21 +5,20 @@ import (
 	"github.com/martini-contrib/render"
 )
 
-//TypeController - controller for searching type information
-type TypeController struct {
+type typeController struct {
 }
 
-func (c *TypeController) ListTypes(render render.Render) {
-	t := ListTypes()
+func (c *typeController) listTypes(render render.Render) {
+	t := listTypes()
 	render.JSON(200, successMessage(t))
 }
 
-func (c *TypeController) GetType(params martini.Params, render render.Render) {
-	t := GetType(params["id"])
+func (c *typeController) getType(params martini.Params, render render.Render) {
+	t := getType(params["id"])
 	render.JSON(200, successMessage(t))
 }
 
-func (c *TypeController) ListTypeItems(params martini.Params, render render.Render) {
-	i := ListItemsByType(params["id"])
+func (c *typeController) listTypeItems(params martini.Params, render render.Render) {
+	i := listItemsByType(params["id"])
 	render.JSON(200, successMessage(i))
 }

@@ -8,9 +8,11 @@ const (
 
 //ResponseMessage structures output into a standard format.
 type ResponseMessage struct {
-	Status  string      `json:"status"`
-	Data    interface{} `json:"data,omitempty"`
-	Message string      `json:"message,omitempty"`
+	Status  string                 `json:"status"`
+	Data    interface{}            `json:"data,omitempty"`
+	Message string                 `json:"message,omitempty"`
+	Meta    map[string]interface{} `json:"_meta,omitempty"`
+	Links   map[string]interface{} `json:"_links,omitempty"`
 }
 
 func successMessage(data interface{}) (rsp ResponseMessage) {

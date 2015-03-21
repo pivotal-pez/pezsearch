@@ -1,52 +1,52 @@
 package pezsearch
 
-type Item struct {
-	Id          string `json:"id"`
+type item struct {
+	ID          string `json:"id"`
 	Name        string `json:"name"`
 	Description string `json:"description"`
-	TypeId      string `json:"type-id"`
+	TypeID      string `json:"type-id"`
 }
 
-func ListItems() (i []Item) {
-	i1 := &Item{
-		Id:          "1",
+func listItems() (i []item) {
+	i1 := &item{
+		ID:          "1",
 		Name:        "Item 1",
 		Description: "Item 1 Description",
-		TypeId:      "abc",
+		TypeID:      "abc",
 	}
-	i2 := &Item{
-		Id:          "2",
+	i2 := &item{
+		ID:          "2",
 		Name:        "Item 2",
 		Description: "Item 2 Description",
-		TypeId:      "def",
+		TypeID:      "def",
 	}
-	i = []Item{*i1, *i2}
+	i = []item{*i1, *i2}
 	return
 }
 
-func GetItem(id string) (i *Item) {
-	i = &Item{
-		Id:          id,
+func getItem(id string) (i *item) {
+	i = &item{
+		ID:          id,
 		Name:        "Item " + id,
 		Description: "Item " + id + " Description",
-		TypeId:      "ghi",
+		TypeID:      "ghi",
 	}
 	return
 }
 
-func ListItemsByType(id string) (i []Item) {
-	i1 := &Item{
-		Id:          "4",
+func listItemsByType(id string) (i []item) {
+	i1 := &item{
+		ID:          "4",
 		Name:        "Item 1",
 		Description: "Item 1 Description",
-		TypeId:      id,
+		TypeID:      id,
 	}
-	i2 := &Item{
-		Id:          "5",
+	i2 := &item{
+		ID:          "5",
 		Name:        "Item 2",
 		Description: "Item 2 Description",
-		TypeId:      id,
+		TypeID:      id,
 	}
-	i = []Item{*i1, *i2}
+	i = []item{*i1, *i2}
 	return
 }
