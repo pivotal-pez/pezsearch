@@ -23,7 +23,3 @@ _testmain.go
 *.test
 *.prof
 coverage.out
-/pezinventory.coverprofile
-/web/web
-/server/server.coverprofile
-/pezinventory

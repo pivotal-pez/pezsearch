@@ -1,4 +1,4 @@
-package models
+package pezsearch
 
 type Type struct {
 	Id          string `json:"id"`

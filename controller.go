@@ -1,4 +1,4 @@
-package controllers
+package pezsearch
 
 const (
 	successStatus = "success"
