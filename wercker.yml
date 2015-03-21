@@ -1,9 +1,9 @@
-box: google/golang
+box: wercker/golang@1.3.2
 
 build:
   # The steps that will be executed on build
   steps:
-    - setup-go-workspace
+    - wercker/setup-go-workspace@1.2.1
     - wercker/golint
 
     # Get the dependencies
