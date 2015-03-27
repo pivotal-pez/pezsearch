@@ -19,20 +19,10 @@ func NewServer() Server {
 
 	//TODO: Database
 
-	//types routes
-	m.Group("/v1/types", func(r martini.Router) {
-		ctrl := typeController{}
-		r.Get("", ctrl.listTypes)
-		r.Get("/:id", ctrl.getType)
-		r.Get("/:id/items", ctrl.listTypeItems)
-	})
+	m.Group("/v1/search", func(r martini.Router) {
+		searchCtrl := searchController{}
+		r.Get("", searchCtrl.find)
 
-	//items routes
-	m.Group("/v1/items", func(r martini.Router) {
-		ctrl := itemController{}
-		r.Get("", ctrl.listItems)
-		r.Get("/:id", ctrl.getItem)
-		r.Get("/:id/history", ctrl.getItemHistory)
 	})
 
 	return m

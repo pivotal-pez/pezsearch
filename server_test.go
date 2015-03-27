@@ -19,116 +19,76 @@ var _ = Describe("Server", func() {
 		recorder = httptest.NewRecorder()
 	})
 
-	Describe("GET /v1/types", func() {
+	Describe("GET /v1/search without search parameters", func() {
 		BeforeEach(func() {
-			request, _ = http.NewRequest("GET", "/v1/types", nil)
+			request, _ = http.NewRequest("GET", "/v1/search", nil)
 		})
 
-		Context("when types exist", func() {
+		Context("global search", func() {
+			It("returns a status code of 400", func() {
+				server.ServeHTTP(recorder, request)
+				Ω(recorder.Code).To(Equal(400))
+			})
+
+			It("returns a search result", func() {
+				server.ServeHTTP(recorder, request)
+				Ω(recorder.Body).To(ContainSubstring("You must supply search criteria"))
+			})
+		})
+	})
+
+	Describe("GET /v1/search with empty search parameters", func() {
+		BeforeEach(func() {
+			request, _ = http.NewRequest("GET", "/v1/search?q", nil)
+		})
+
+		Context("global search", func() {
+			It("returns a status code of 400", func() {
+				server.ServeHTTP(recorder, request)
+				Ω(recorder.Code).To(Equal(400))
+			})
+
+			It("returns a search result", func() {
+				server.ServeHTTP(recorder, request)
+				Ω(recorder.Body).To(ContainSubstring("You must supply search criteria"))
+			})
+		})
+	})
+
+	Describe("GET /v1/search with search parameters", func() {
+		BeforeEach(func() {
+			request, _ = http.NewRequest("GET", "/v1/search?q=abc", nil)
+		})
+
+		Context("global search with results", func() {
 			It("returns a status code of 200", func() {
 				server.ServeHTTP(recorder, request)
 				Ω(recorder.Code).To(Equal(200))
 			})
 
-			It("returns a list of types", func() {
+			It("returns a search result", func() {
 				server.ServeHTTP(recorder, request)
-				Ω(recorder.Body).To(ContainSubstring("success"))
-				Ω(recorder.Body).To(ContainSubstring("data"))
+				Ω(recorder.Body).To(ContainSubstring("abc"))
+				Ω(recorder.Body).To(ContainSubstring("_meta"))
 			})
 		})
 	})
 
-	Describe("GET /v1/types/:id", func() {
+	Describe("GET /v1/search with scope keyword", func() {
 		BeforeEach(func() {
-			request, _ = http.NewRequest("GET", "/v1/types/12345", nil)
+			request, _ = http.NewRequest("GET", "/v1/search?q=abc scope:item", nil)
 		})
 
-		Context("with valid Type id", func() {
+		Context("global search with results", func() {
 			It("returns a status code of 200", func() {
 				server.ServeHTTP(recorder, request)
 				Ω(recorder.Code).To(Equal(200))
 			})
 
-			It("returns Type details", func() {
+			It("returns a search result", func() {
 				server.ServeHTTP(recorder, request)
-				Ω(recorder.Body).To(ContainSubstring("success"))
-				Ω(recorder.Body).To(ContainSubstring("data"))
-			})
-		})
-	})
-
-	Describe("GET /v1/types/:id/items", func() {
-		BeforeEach(func() {
-			request, _ = http.NewRequest("GET", "/v1/types/12345/items", nil)
-		})
-
-		Context("when Items exist for Type", func() {
-			It("returns a status code of 200", func() {
-				server.ServeHTTP(recorder, request)
-				Ω(recorder.Code).To(Equal(200))
-			})
-
-			It("returns a list of Items for Type", func() {
-				server.ServeHTTP(recorder, request)
-				Ω(recorder.Body).To(ContainSubstring("success"))
-				Ω(recorder.Body).To(ContainSubstring("data"))
-			})
-		})
-	})
-
-	Describe("GET /v1/items", func() {
-		BeforeEach(func() {
-			request, _ = http.NewRequest("GET", "/v1/items", nil)
-		})
-
-		Context("when Items exist", func() {
-			It("returns a status code of 200", func() {
-				server.ServeHTTP(recorder, request)
-				Ω(recorder.Code).To(Equal(200))
-			})
-
-			It("returns a list of Items", func() {
-				server.ServeHTTP(recorder, request)
-				Ω(recorder.Body).To(ContainSubstring("success"))
-				Ω(recorder.Body).To(ContainSubstring("data"))
-			})
-		})
-	})
-
-	Describe("GET /v1/items/:id", func() {
-		BeforeEach(func() {
-			request, _ = http.NewRequest("GET", "/v1/items/12345", nil)
-		})
-
-		Context("with valid Item id", func() {
-			It("returns a status code of 200", func() {
-				server.ServeHTTP(recorder, request)
-				Ω(recorder.Code).To(Equal(200))
-			})
-
-			It("returns Item details", func() {
-				server.ServeHTTP(recorder, request)
-				Ω(recorder.Body).To(ContainSubstring("success"))
-				Ω(recorder.Body).To(ContainSubstring("data"))
-			})
-		})
-	})
-
-	Describe("GET /v1/items/:id/history", func() {
-		BeforeEach(func() {
-			request, _ = http.NewRequest("GET", "/v1/items/12345/history", nil)
-		})
-
-		Context("not implemented", func() {
-			It("returns a status code of 501", func() {
-				server.ServeHTTP(recorder, request)
-				Ω(recorder.Code).To(Equal(501))
-			})
-
-			It("returns error response", func() {
-				server.ServeHTTP(recorder, request)
-				Ω(recorder.Body).To(ContainSubstring("error"))
-				Ω(recorder.Body).To(ContainSubstring("message"))
+				Ω(recorder.Body).To(ContainSubstring("abc"))
+				Ω(recorder.Body).To(ContainSubstring("_meta"))
 			})
 		})
 	})

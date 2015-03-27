@@ -3,7 +3,6 @@ package pezsearch
 const (
 	successStatus = "success"
 	errorStatus   = "error"
-	failStatus    = "fail"
 )
 
 //ResponseMessage structures output into a standard format.
@@ -27,14 +26,6 @@ func errorMessage(message string) (rsp ResponseMessage) {
 	rsp = ResponseMessage{
 		Status:  errorStatus,
 		Message: message,
-	}
-	return
-}
-
-func failureMessage(data interface{}) (rsp ResponseMessage) {
-	rsp = ResponseMessage{
-		Status: failStatus,
-		Data:   data,
 	}
 	return
 }
