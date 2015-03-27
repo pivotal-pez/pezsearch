@@ -41,17 +41,32 @@ type fakeDB struct {
 // no scope returns all 12 records
 // will honor limit and offset
 func (db *fakeDB) find(params *queryParams) (count int, results []*Record) {
+	var r []*Record
 
 	if params.scope == TypeResource {
-		results = db.Data[:2]
+		r = db.Data[:2]
 	} else if params.scope == ItemResource {
-		results = db.Data[2:]
+		r = db.Data[2:]
 	} else {
-		results = db.Data
+		r = db.Data
 	}
-	count = len(results)
+	count = len(r)
 
 	//TODO(dnem): check for limit and offset and return accordingly
+	o := params.offset
+	l := params.limit
+	if o >= count {
+		o = count - l
+	}
+	if o < 0 {
+		o = 0
+	}
+	ol := o + l
+	if ol >= count {
+		results = r[o:]
+	} else {
+		results = r[o:ol]
+	}
 	return
 }
 
