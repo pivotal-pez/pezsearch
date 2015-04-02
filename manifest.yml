@@ -2,4 +2,4 @@
 applications:
   - name: pezsearch
     buildpack: http://github.com/ryandotsmith/null-buildpack.git
-    command: ./server/main
+    command: ./server/server
