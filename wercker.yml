@@ -51,7 +51,7 @@ deploy:
 
     - add-to-known_hosts:
         hostname: github.com
-        fingerprint: 89:7b:26:a6:5f:24:02:a9:a5:62:a2:67:b6:c1:c9:6b
+        fingerprint: 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48
         
     - xchapter7x/cf-push-zdd:
         user_name: $CF_USER

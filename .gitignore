@@ -23,8 +23,6 @@ _testmain.go
 *.test
 *.prof
 coverage.out
-server/server
 /_builds/
 /_projects/
 /_steps/
-/main
