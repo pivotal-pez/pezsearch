@@ -1,1 +1,1 @@
-program: server/server
+program: server
