@@ -32,7 +32,7 @@ build:
     - script:
         name: build the server binary
         code: |
-          godep go build main.go
+          godep go build ./server/main.go
 
     - script:
         name: add repo to artifact
