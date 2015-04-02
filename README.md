@@ -1,5 +1,3 @@
-# pezinventory
+[![wercker status](https://app.wercker.com/status/2a59658bdc94a859724a872a1ac37d95/m "wercker status")](https://app.wercker.com/project/bykey/2a59658bdc94a859724a872a1ac37d95)
 
-pez inventory search service
-
-[![wercker status](https://app.wercker.com/status/d56d046f7576cce524ee448c47eef368/m "wercker status")](https://app.wercker.com/project/bykey/d56d046f7576cce524ee448c47eef368)
+# Pez Search Service
