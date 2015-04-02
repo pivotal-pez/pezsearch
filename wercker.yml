@@ -30,15 +30,29 @@ build:
           (cd $WERCKER_SOURCE_DIR && ./testCoverage ./... $COVERAGE_WATERMARK)
 
     - script:
+        name: build the server binary
+        code: |
+          godep go build main.go
+
+    - script:
         name: add repo to artifact
         code: |
           cp -R ./ ${WERCKER_OUTPUT_DIR}
 
 deploy:
   steps: 
-    - add-ssh-key:
+    - script:
+        name: install-packages
+        code: |
+          sudo apt-get install -y ssh wget
+
+    - wercker/add-ssh-key@1.0.2:
         keyname: PEZ_GITHUB_KEY
-    
+
+    - add-to-known_hosts:
+        hostname: github.com
+        fingerprint: 89:7b:26:a6:5f:24:02:a9:a5:62:a2:67:b6:c1:c9:6b
+        
     - xchapter7x/cf-push-zdd:
         user_name: $CF_USER
         user_pass: $CF_PASS
@@ -51,7 +65,7 @@ deploy:
         domain: $CF_DOMAINNAME
 
     - xchapter7x/flowy-release:
-        action: "complete-release"
+        action: "tag-only-release"
         tag_variable_name: "VERSION_TAG"
         active: $GITFLOW_ACTIVE
         git_name: $GITFLOW_NAME
