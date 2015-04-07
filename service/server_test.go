@@ -6,7 +6,7 @@ import (
 
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
-	. "github.com/pivotalservices/pezsearch"
+	. "github.com/pivotalservices/pezsearch/service"
 )
 
 var _ = Describe("Server", func() {
