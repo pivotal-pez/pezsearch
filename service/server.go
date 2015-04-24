@@ -10,7 +10,7 @@ type Server *martini.ClassicMartini
 
 //NewServer configures and returns a Server.
 //TODO: Parameterize DB
-func NewServer() (m Server, addRoutes func()) {
+func NewServer(authHandler martini.Handler) (m Server) {
 
 	m = Server(martini.Classic())
 	m.Use(render.Renderer(render.Options{
@@ -18,12 +18,10 @@ func NewServer() (m Server, addRoutes func()) {
 	}))
 
 	//TODO: Database
-	addRoutes = func() {
-		m.Group("/v1/search", func(r martini.Router) {
-			searchCtrl := searchController{}
-			r.Get("", searchCtrl.find)
+	m.Group("/v1/search", func(r martini.Router) {
+		searchCtrl := searchController{}
+		r.Get("", searchCtrl.find)
 
-		})
-	}
+	}, authHandler)
 	return
 }
