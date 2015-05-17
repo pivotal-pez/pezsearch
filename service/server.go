@@ -20,6 +20,8 @@ func NewServer(authHandler martini.Handler) (m Server) {
 
 	m.Use(cors.Allow(&cors.Options{
 		AllowAllOrigins: true,
+		AllowMethods:    []string{"GET"},
+		AllowHeaders:    []string{"X-API-KEY"},
 	}))
 
 	//TODO: Database
