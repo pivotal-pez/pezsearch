@@ -51,6 +51,10 @@
 			"Rev": "3e759b5c5532bec4f3934ea4c745e4ae5d69737a"
 		},
 		{
+			"ImportPath": "github.com/martini-contrib/cors",
+			"Rev": "553b9208d353a39b0850c02355f478ba020c86d7"
+		},
+		{
 			"ImportPath": "github.com/martini-contrib/oauth2",
 			"Rev": "383220cdf3349109f5ced723c921d4d76478176c"
 		},
