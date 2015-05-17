@@ -27,17 +27,24 @@ type queryParams struct {
 	offset int
 }
 
+// @Title search
+// @Description Search API
+// @Accept  json
+// @Param   X-API-KEY       header  string  true        "APIKEY"
+// @Param   q               query   string  true        "Retrieve items matching search terms"
+// @Success 200 {object}  ResponseMessage
+// @Failure 400 {object}  ResponseMessage
+// @Resource /v1/search
+// @Router /v1/search [get]
 func (c *searchController) find(req *http.Request, render render.Render) {
 	r := req.URL.Query()
 
-	// Short-circuit lack of search parameters
 	q := r.Get("q")
 	if len(q) == 0 {
 		render.JSON(400, errorMessage("You must supply search criteria"))
 		return
 	}
 
-	//extract scope from q
 	scope, q := extractScope(q)
 
 	limit := parseLimit(r)
@@ -51,14 +58,11 @@ func (c *searchController) find(req *http.Request, render render.Render) {
 		offset: offset,
 	}
 
-	// invoke DB
 	db := initDB()
 	count, results := db.find(params)
 
-	// create ResponseMessage
 	reply := successMessage(results)
 
-	// populate _meta
 	meta := make(map[string]interface{})
 	meta["count"] = count
 	meta["uri"] = req.URL.RequestURI()

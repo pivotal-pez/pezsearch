@@ -1,3 +1,7 @@
+// @APIVersion 1.0.0
+// @APITitle Pez Search
+// @APIDescription Search endpoint for Pez
+// @SubApi Type Search [/v1/search]
 package main
 
 import (
