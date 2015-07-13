@@ -8,8 +8,8 @@ import (
 	"os"
 
 	cfenv "github.com/cloudfoundry-community/go-cfenv"
-	"github.com/pivotalservices/pezauth/keycheck"
-	pez "github.com/pivotalservices/pezsearch/service"
+	"github.com/pivotal-pez/pezauth/keycheck"
+	pez "github.com/pivotal-pez/pezsearch/service"
 )
 
 func main() {
@@ -18,6 +18,6 @@ func main() {
 	targetKeyName := os.Getenv("UPS_PEZVALIDATOR_TARGET")
 	service, _ := appEnv.Services.WithName(validatorServiceName)
 	validationTargetUrl := service.Credentials[targetKeyName]
-	s := pez.NewServer(keycheck.NewAPIKeyCheckMiddleware(validationTargetUrl).Handler())
+	s := pez.NewServer(keycheck.NewAPIKeyCheckMiddleware(validationTargetUrl.(string)).Handler())
 	s.Run()
 }
