@@ -1,3 +1,3 @@
-[![wercker status](https://app.wercker.com/status/2a59658bdc94a859724a872a1ac37d95/m "wercker status")](https://app.wercker.com/project/bykey/2a59658bdc94a859724a872a1ac37d95)
+[![wercker status](https://app.wercker.com/status/0035a354adcb0dbb669ec327955b42a7/m "wercker status")](https://app.wercker.com/project/bykey/0035a354adcb0dbb669ec327955b42a7)
 
 # Pez Search Service
